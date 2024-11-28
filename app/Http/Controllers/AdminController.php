@@ -37,6 +37,7 @@ use App\Models\Currency;
 use App\Models\PaymentHistory;
 use App\Models\TeacherPermission;
 use App\Models\Payments;
+use App\Models\Admitcard;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
@@ -117,26 +118,46 @@ class AdminController extends Controller
     // public function admitcard(Request $request):view{
     //     return view('admin.admit_card.admitcard');
     // }
+
+    // admitcard start
     public function admitcard(Request $request): View
-{
-    return view('admin.admit_card.admitcard'); 
-}
+    {
+        return view('admin.admit_card.admitcard'); 
+    }
 
-public function printadmitcard(Request $request): View
-{
-    $sessions = Session::where('school_id', auth()->user()->school_id)->get();
-    $classes = Classes::where('school_id', auth()->user()->school_id)->get();
-    return view('admin.admit_card.printadmitcard', ['sessions' => $sessions, 'classes' => $classes]);
-}
+    public function printadmitcard(Request $request): View
+    {
+        $sessions = Session::where('school_id', auth()->user()->school_id)->get();
+        $classes = Classes::where('school_id', auth()->user()->school_id)->get();
+        return view('admin.admit_card.printadmitcard', ['sessions' => $sessions, 'classes' => $classes]);
+    }
 
-public function createAdmitCard()
-{
-    return view('admin.admit_card.add_admitcard');
-}
-public function editadmitcard()
-{
-    return view('admin.admit_card.edit_admincard');
-}
+    public function createAdmitCard()
+    {
+        return view('admin.admit_card.add_admitcard');
+    }
+    public function editadmitcard()
+    {
+        return view('admin.admit_card.edit_admincard');
+    }
+
+    public function admitcardCreate(Request $request)
+    {
+        $validatedData = $request->validate([
+            'template' => 'required|string|max:255',
+            'heading' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
+            'examname' => 'required|string|max:255',
+            'examcenter' => 'required|string|max:255',
+            'footertext' => 'nullable|string',
+            'signature' => 'nullable|string',
+        ]);
+
+        $admitcard = Admitcard::create($validatedData);
+
+        return redirect()->back()->with('message','You have successfully create a new AdmitCard.');
+
+    }
 
 
      public function check_admin_subscription($school_id)
@@ -171,7 +192,7 @@ public function editadmitcard()
  
      }
 
-
+// admitcard End
 
     public function adminDashboard()
     {

@@ -336,7 +336,7 @@ Route::controller(AdminController::class)->middleware('admin','auth')->group(fun
     Route::get('admin/admitcard','admitCard')->name('admin.admit_card.admitcard');
     Route::get('admin/printadmitcard','printadmitcard')->name('admin.admit_card.printadmitcard');
     Route::get('admin/admitcard_create', 'createAdmitCard')->name('admin.admit_card.open_modal');
-    Route::post('admin/admitcard', 'createAdmitCard')->name('admin.create.admitcard');
+    Route::post('admin/admitcard', 'admitcardCreate')->name('admin.create.admitcard');
     Route::get('admin/card', 'editadmitcard')->name('admin.edit.admit_card');
     Route::post('admin/admit_card', 'editadmitcard')->name('admin.admit_card.update');
 

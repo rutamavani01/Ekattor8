@@ -619,6 +619,21 @@ CREATE TABLE `grades` (
 
 -- --------------------------------------------------------
 
+CREATE TABLE `admitcard` (
+    `id` bigint(20) UNSIGNED NOT NULL,
+    `template` VARCHAR(255) NOT NULL,
+    `heading` VARCHAR(255),
+    `title` VARCHAR(255),
+    `examname` VARCHAR(255),
+    `examcenter` VARCHAR(255),
+    `footertext` TEXT,
+    `signature` VARCHAR(255),
+    `created_at` timestamp NULL DEFAULT NULL,
+    `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;;
+
+-- --------------------------------------------------------
+
 --
 -- Table structure for table `language`
 --
@@ -3630,6 +3645,12 @@ ALTER TABLE `gradebooks`
 -- AUTO_INCREMENT for table `grades`
 --
 ALTER TABLE `grades`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `admitcard`
+--
+ALTER TABLE `admitcard`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --

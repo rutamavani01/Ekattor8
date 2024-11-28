@@ -4,7 +4,7 @@
         @csrf
         <div class="form-row">
             <div class="fpb-7">
-                <label for="template" class="eForm-label">{{ get_phrase('Template *') }}</label>
+                <label for="template" class="eForm-label">{{ get_phrase('Template') }}</label>
                 <input type="text" class="form-control eForm-control" id="template" name="template" required>
             </div>
 
@@ -44,4 +44,4 @@
             </div>
         </div>
     </form>
-</div> 
+</div>
