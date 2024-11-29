@@ -339,6 +339,7 @@ Route::controller(AdminController::class)->middleware('admin','auth')->group(fun
     Route::post('admin/admitcard', 'admitcardCreate')->name('admin.create.admitcard');
     Route::get('admin/card', 'editadmitcard')->name('admin.edit.admit_card');
     Route::post('admin/admit_card', 'editadmitcard')->name('admin.admit_card.update');
+    Route::get('admin/admit_card/delete/{id}', 'admitcardDelete')->name('admin.admit_card.delete');
 
 
     //Subject routes

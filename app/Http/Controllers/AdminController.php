@@ -122,7 +122,8 @@ class AdminController extends Controller
     // admitcard start
     public function admitcard(Request $request): View
     {
-        return view('admin.admit_card.admitcard'); 
+        $admitcards = Admitcard::get();
+        return view('admin.admit_card.admitcard',['admitcards'=>$admitcards]); 
     }
 
     public function printadmitcard(Request $request): View
@@ -136,6 +137,7 @@ class AdminController extends Controller
     {
         return view('admin.admit_card.add_admitcard');
     }
+
     public function editadmitcard()
     {
         return view('admin.admit_card.edit_admincard');
@@ -150,18 +152,29 @@ class AdminController extends Controller
             'examname' => 'required|string|max:255',
             'examcenter' => 'required|string|max:255',
             'footertext' => 'nullable|string',
-            'signature' => 'nullable|string',
+            'signature' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', 
         ]);
+
+        if ($request->hasFile('signature')) {
+            $filePath = $request->file('signature')->store('signatures', 'public'); 
+            $validatedData['signature'] = $filePath;
+        }
 
         $admitcard = Admitcard::create($validatedData);
 
-        return redirect()->back()->with('message','You have successfully create a new AdmitCard.');
-
+        return redirect()->back()->with('message', 'You have successfully created a new AdmitCard.');
     }
 
+    public function admitcardDelete($id)
+    {
+        $admitcard = Admitcard::find($id);
+        $admitcard->delete();
+        $admitcards = Admitcard::get();
+        return redirect()->back()->with('message','You have successfully delete Admitcard.');
+    }
 
-     public function check_admin_subscription($school_id)
-     {
+    public function check_admin_subscription($school_id)
+    {
          $validity_of_current_package=Subscription::where('school_id',$school_id)->where('active',1)->first();
          if(!empty($validity_of_current_package))
          {
@@ -190,7 +203,7 @@ class AdminController extends Controller
  
          }
  
-     }
+    }
 
 // admitcard End
 

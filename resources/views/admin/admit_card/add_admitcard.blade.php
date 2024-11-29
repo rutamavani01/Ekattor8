@@ -34,9 +34,9 @@
             </div>
 
             <div class="fpb-7">
-                <label for="footertext" class="eForm-label">{{ get_phrase('Signature ') }}</label>
+                <label for="signature" class="eForm-label">{{ get_phrase('Signature ') }}</label>
                 <input class="form-control eForm-control-file" type="file" class="form-control eForm-control"
-                    id="footertext" name="footertext" required>
+                    id="signature" name="signature" required>
             </div>
 
             <div class="fpb-7 pt-2">

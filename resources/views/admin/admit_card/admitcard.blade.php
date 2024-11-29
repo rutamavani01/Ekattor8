@@ -43,15 +43,16 @@
                 <thead>
                     <tr style="font-size: 13px; font-weight: 300; color: #797c8b;">
                         <th>#</th>
-                        <th>Template Name</th>
-                        <th>Admit Card</th>
-                        <th>Actions</th>
+                        <th>{{ get_phrase('Template Name') }}</th>
+                        <th>{{ get_phrase('Admit Card') }}</th>
+                        <th>{{ get_phrase('Actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($admitcards as $admitcard)
                     <tr>
-                        <td class="m-3">1</td>
-                        <td>Exam Admit Card</td>
+                        <td class="m-3">{{ $loop->index + 1 }}</td>
+                        <td>{{ $admitcard->template }}</td>
                         <td><a href="#" class=" btn-sm " data-bs-toggle="modal" data-bs-target="#admitCardModal">See
                                 Admit Card</a></td>
                         <td>
@@ -64,30 +65,14 @@
                                     style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(12px, 37px);">
                                     <a class="dropdown-item" href="javascript:;"
                                         onclick="rightModal('{{ route('admin.edit.admit_card') }}', '{{ get_phrase('Edit Grade') }}')">{{ get_phrase('Edit') }}</a>
-                                    <li><a class="dropdown-item" href="#">Delete</a></li>
+                                    <li><a class="dropdown-item" href="#"
+                                            onclick="confirmModal('{{route('admin.admit_card.delete',['id'=>$admitcard->id])}}','undefined')">Delete</a>
+                                    </li>
                                 </ul>
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Exam Result</td>
-                        <td><a href="#" class=" btn-sm" data-bs-toggle="modal" data-bs-target="#admitCardModal">See
-                                Admit Card</a></td>
-                        <td>
-                            <div class="btn-group">
-                                <button type="button" class="  eBtn eBtn-black dropdown-toggle table-action-btn-2"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Actions
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end eDropdown-menu-2 eDropdown-table-action showmenu"
-                                    style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(12px, 37px);">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
 
