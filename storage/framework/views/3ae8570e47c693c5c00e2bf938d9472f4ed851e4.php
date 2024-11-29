@@ -64,7 +64,7 @@
                                 <ul class="dropdown-menu dropdown-menu-end eDropdown-menu-2 eDropdown-table-action showmenu"
                                     style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(12px, 37px);">
                                     <a class="dropdown-item" href="javascript:;"
-                                        onclick="rightModal('<?php echo e(route('admin.edit.admit_card')); ?>', '<?php echo e(get_phrase('Edit Grade')); ?>')"><?php echo e(get_phrase('Edit')); ?></a>
+                                        onclick="rightModal('<?php echo e(route('admin.edit.admit_card',['id'=>$admitcard->id])); ?>', '<?php echo e(get_phrase('Edit Grade')); ?>')"><?php echo e(get_phrase('Edit')); ?></a>
                                     <li><a class="dropdown-item" href="#"
                                             onclick="confirmModal('<?php echo e(route('admin.admit_card.delete',['id'=>$admitcard->id])); ?>','undefined')">Delete</a>
                                     </li>

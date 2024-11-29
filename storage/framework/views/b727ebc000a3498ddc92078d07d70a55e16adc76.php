@@ -202,4 +202,5 @@ function removeField(buttonElement) {
         alert('At least one information field must remain.');
     }
 }
-</script><?php /**PATH C:\xampp\htdocs\Ekattor8\resources\views/admin/offline_admission/single_student_admission.blade.php ENDPATH**/ ?>
+</script>
+<?php /**PATH C:\xampp\htdocs\Ekattor8\resources\views/admin/offline_admission/single_student_admission.blade.php ENDPATH**/ ?>

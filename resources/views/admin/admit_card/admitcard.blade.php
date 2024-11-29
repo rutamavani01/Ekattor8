@@ -64,7 +64,7 @@
                                 <ul class="dropdown-menu dropdown-menu-end eDropdown-menu-2 eDropdown-table-action showmenu"
                                     style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(12px, 37px);">
                                     <a class="dropdown-item" href="javascript:;"
-                                        onclick="rightModal('{{ route('admin.edit.admit_card') }}', '{{ get_phrase('Edit Grade') }}')">{{ get_phrase('Edit') }}</a>
+                                        onclick="rightModal('{{ route('admin.edit.admit_card',['id'=>$admitcard->id]) }}', '{{ get_phrase('Edit Grade') }}')">{{ get_phrase('Edit') }}</a>
                                     <li><a class="dropdown-item" href="#"
                                             onclick="confirmModal('{{route('admin.admit_card.delete',['id'=>$admitcard->id])}}','undefined')">Delete</a>
                                     </li>

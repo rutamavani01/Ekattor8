@@ -138,9 +138,44 @@ class AdminController extends Controller
         return view('admin.admit_card.add_admitcard');
     }
 
-    public function editadmitcard()
+    public function editAdmitCard($id)
     {
-        return view('admin.admit_card.edit_admincard');
+        $admitcard = Admitcard::findOrFail($id);
+        return view('admin.admit_card.edit_admincard', compact('admitcard'));
+    }
+    
+    public function updateAdmitCard(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'template' => 'required|string|max:255',
+            'heading' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
+            'examname' => 'required|string|max:255',
+            'examcenter' => 'required|string|max:255',
+            'footertext' => 'nullable|string',
+            'signature' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+    
+        // Find the AdmitCard record by ID
+        $admitcard = Admitcard::findOrFail($id);
+    
+        // Handle file upload for the 'signature' field if provided
+        if ($request->hasFile('signature')) {
+            // Delete the old signature file if it exists
+            if ($admitcard->signature && \Storage::exists('public/' . $admitcard->signature)) {
+                \Storage::delete('public/' . $admitcard->signature);
+            }
+    
+            // Store the new signature file
+            $filePath = $request->file('signature')->store('signatures', 'public');
+            $validatedData['signature'] = $filePath;
+        }
+    
+        // Update the AdmitCard record with validated data
+        $admitcard->update($validatedData);
+    
+        // Return success response
+        return redirect()->back()->with('message', 'AdmitCard updated successfully.');
     }
 
     public function admitcardCreate(Request $request)
