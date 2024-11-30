@@ -46,7 +46,7 @@
             </div>
 
             <div class="fpb-7 pt-2">
-                <button class="btn-form" type="submit">{{ get_phrase('Create') }}</button>
+                <button class="btn-form" type="submit">{{ get_phrase('Update') }}</button>
             </div>
         </div>
     </form>

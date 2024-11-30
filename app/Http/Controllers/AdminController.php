@@ -115,9 +115,6 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    // public function admitcard(Request $request):view{
-    //     return view('admin.admit_card.admitcard');
-    // }
 
     // admitcard start
     public function admitcard(Request $request): View
@@ -207,6 +204,8 @@ class AdminController extends Controller
         $admitcards = Admitcard::get();
         return redirect()->back()->with('message','You have successfully delete Admitcard.');
     }
+
+    // admitcard end
 
     public function check_admin_subscription($school_id)
     {
@@ -1966,7 +1965,8 @@ class AdminController extends Controller
         return redirect('/admin/routine/list?class_id='.$data['class_id'].'&section_id='.$data['section_id'])->with('message','You have successfully create a class routine.');
     }
 
-    public function routineEditModal($id){
+    public function routineEditModal($id)
+    {
         $routine = Routine::find($id);
         $classes = Classes::get()->where('school_id', auth()->user()->school_id);
         $teachers = User::where(['role_id' => 3, 'school_id' => auth()->user()->school_id])->get();
